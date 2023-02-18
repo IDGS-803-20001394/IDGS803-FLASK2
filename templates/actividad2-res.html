@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <title>Cinepolis</title>
+    <style>
+        body{
+            background: #0553a1;
+        }
+        .center {
+            width: 400px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 15px;
+            border-radius: 4px;
+            color: #fff;
+            box-shadow: 7px 13px 37px #000;
+        }
+    </style>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-responsive.min.css">
+</head>
+
+<body>
+    <div class="center">
+        <header class="text-center">
+            <h1>SISTEMA CINEPOLIS</h1>
+            <img src="../static/img/cinépolis.jpg" alt="" style="height: 150px;">
+        </header><br>
+            <h4 class="text-center">Datos de compra:</h4>
+            <label class="control-label">Nombre de comprador:</label>
+            <h4>{{nombre}}</h4>
+            <br/>
+            <label class="control-label">Cantidad de boletos permitidos:</label>
+            <h4>{{permitidos}}</h4>
+            <br/>
+            <label class="control-label">Cantidad de boletos pedidos::</label>
+            <h4>{{pedidos}}</h4>
+            <br/>
+            <label class="control-label">Total de compra:</label>
+            <h4>${{total}}</h4>
+            <br/>
+            <button type="submit" class="btn btn-default btn-warning">
+                <a href="http://127.0.0.1:5000/" style="text-decoration: none; color: #fff;" >Regresar</a>
+            </button>
+    </div>
+</body>
+
+</html>

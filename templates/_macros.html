@@ -1,0 +1,29 @@
+
+{% macro render_input(name, placeholder, type="text") %}
+
+<div class="control-group">
+    <label for="{{name}}" class="control-label">{{placeholder}}</label>
+    <div class="controls">
+        <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}">
+    </div>
+</div>
+
+{%endmacro%}
+
+{% macro render_field(field)%}
+<div class="control-group">
+    <div class="controls">
+        {{field.label}}
+        {{field(**kwargs)|safe}}
+    </div>
+</div>
+{%endmacro%}
+
+{% macro render_CajaD(cant) %}
+
+    <div class="controls">
+        <label for="caja{{cant}}" class="control-label">N{{cant}}</label>
+        <input type="number" name="caja{{cant}}">
+    </div>
+
+{%endmacro%}

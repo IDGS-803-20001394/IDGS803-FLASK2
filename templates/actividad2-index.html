@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <title>Cinepolis</title>
+    <style>
+        body{
+            background: #0553a1;
+        }
+        .center {
+            width: 400px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 15px;
+            border-radius: 4px;
+            color: #fff;
+            box-shadow: 7px 13px 37px #000;
+        }
+    </style>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-responsive.min.css">
+</head>
+
+<body>
+    <div class="center">
+        <header class="text-center">
+            <h1>SISTEMA CINEPOLIS</h1>
+            <img src="../static/img/cinépolis.jpg" alt="" style="height: 150px;">
+        </header><br>
+            <h4 class="text-center">Ingrese los datos para la compra</h4>
+            <form class="form-horizontal" action="/resultado" method="POST">
+                <div class="control-group">
+                    <label for="" class="control-label">Nombre:</label>
+                    <div class="controls">
+                        <input type="text" name="txtNombre" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">Cantidad de Compradores:</label>
+                    <div class="controls">
+                        <input type="text" name="txtCantCompradores" placeholder="Cantidad de compradores">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">Cantidad de Boletos:</label>
+                    <div class="controls">
+                        <input type="text" name="txtCantBoletos" placeholder="Cantidad de boletos">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">Tarjeta Cineco:</label>
+                    <div class="controls">
+                        <input type="radio" value="1" name="opcCineco"/>Si
+                        <input type="radio" value="0" name="opcCineco" checked/>No
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-default btn-primary">
+                            <i class="icon-book icon-white"></i> Procesar
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+</body>
+
+</html>
