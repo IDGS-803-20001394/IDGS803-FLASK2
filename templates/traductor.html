@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    
+<h2 class="text-center">TRADUCTOR</h2>
+    <form action="" method="POST" name="registro" novalidate>
+    {%from "_macros.html" import render_field%}
+        <div class="control-group text-center">
+            {{form.csrf_token}}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            {{render_field(form.pEspañol)}}
+            {{render_field(form.pIngles)}}
+        </div>
+        <div class="control-group text-center">
+            <div class="controls">
+                <input type="submit" value="Registrar" name="btnRegistrar">
+            </div>
+        </div>
+    </form>
+    <hr/>
+    <form action="" method="POST" name="traduction" novalidate>
+        {{form.csrf_token}}
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="row">
+            <div class="col-4">
+                <div class="control-group">
+                    <label for="" class="control-label"><h4>Idioma:</h4></label>
+                    <div class="controls">
+                        <input type="radio" value="1" name="opcIdioma"/>Español
+                        <br/>
+                        <input type="radio" value="0" name="opdIdioma" checked/>Ingles
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="control-group">
+                    <label for="" class="control-label"><h4>Palabra:</h4></label>
+                    <div class="controls">
+                        <input type="text" name="txtPalabra" class="form-control" placeholder="Palabra a traducir">
+                        <input type="submit" value="Buscar" name="btnBuscar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h4>Resultado:</h4>
+                <h4>AAA</h4>
+            </div>
+        </div>
+        </form>
+
+{% endblock %}
