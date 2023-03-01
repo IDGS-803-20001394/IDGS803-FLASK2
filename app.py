@@ -82,10 +82,104 @@ def traductor():
         f = open('traductor.txt','a')
         f.write('\n'+esp.upper()+'-'+ing.upper())
         f.close()
+
+    return render_template('traductor.html', form=reg_traduct, res = '')
+
+@app.route("/resTraductor", methods=['POST'])
+def restraductor():
+    regtraduct = forms.TraductorForm(request.form)
+    palabra = request.form.get('txtPalabra')
+    opcion = request.form.get('opcIdioma')
+    traduccion = ''
+    f=open('traductor.txt','r')
+    palabras = f.readlines()
+
+    print(palabra)
+
+    for item in palabras:
+        if(opcion == '1'):
+            if(palabra.upper() == item.split('-')[0].strip()):
+                traduccion = item.split('-')[1]
+                break
+        elif(opcion == '2'):
+            if(palabra.upper() == item.split('-')[1].strip()):
+                traduccion = item.split('-')[0]
+                break
+        
+    f.close()
+    if(traduccion == ''):
+        traduccion = 'No se encontró la palabra'
+    return render_template('traductor.html', form=regtraduct, res = traduccion)
+
+@app.route("/calcRes", methods=['GET','POST'])
+def calcRes():
+    if request.method == 'POST':
+        banda1 = request.form.get('txtBanda1')
+        banda2 = request.form.get('txtBanda2')
+        banda3 = request.form.get('txtBanda3')
+        tolerancia = request.form.get('opcTolerancia')
+        result = ''
+        minRes = ''
+        maxRes = ''
+
+        nameColors = {
+            0: "Negro",
+            1: "Café",
+            2: "Rojo",
+            3: "Naranja",
+            4: "Amarillo",
+            5: "Verde",
+            6: "Azul",
+            7: "Violeta",
+            8: "Gris",
+            9: "Blanco",
+            10: "Oro",
+            11: "Plata"
+        }
+
+        DiccioColors = {
+            "n1":nameColors[int(banda1)], 
+            "n2":nameColors[int(banda2)],
+            "n3":nameColors[int(banda3)],
+            "n4":nameColors[int(tolerancia)]
+            }
+
+        if banda3 == "0":
+            result = str(banda1)+str(banda2)
+        elif banda3 == "1":
+            result = str(banda1)+str(banda2)+'0'
+        elif banda3 == "2":
+            result = str(banda1)+str(banda2)+'00'
+        elif banda3 == "3":
+            result = str(banda1)+str(banda2)+'000'
+        elif banda3 == "4":
+            result = str(banda1)+str(banda2)+'0000'
+        elif banda3 == "5":
+            result = str(banda1)+str(banda2)+'00000'
+        elif banda3 == "6":
+            result = str(banda1)+str(banda2)+'000000'
+        elif banda3 == "7":   
+            result = str(banda1)+str(banda2)+'0000000'
+        elif banda3 == "8":
+            result = str(banda1)+str(banda2)+'00000000'
+        elif banda3 == "9":
+            result = str(banda1)+str(banda2)+'000000000'
+
+        if tolerancia == "10":
+            minRes = int(result) - (int(result) * 5 / 100)
+            maxRes = int(result) + (int(result) * 5 / 100)
+        elif tolerancia == "11":
+            minRes = int(result) - (int(result) * 10 / 100)
+            maxRes = int(result) + (int(result) * 10 / 100)
+
+        return render_template('calcRes.html', 
+        result="{:,}".format(int(result)), 
+        min="{:,}".format(float(minRes)), 
+        max="{:,}".format(float(maxRes)), 
+        colors=DiccioColors)
     
-       
     else:
-        return render_template('traductor.html', form=reg_traduct, res = '')
+        return render_template('calcRes.html', result='')
 
 if __name__ == "__main__":
     csrf.init_app(app)

@@ -35,3 +35,49 @@
     </div>
 
 {%endmacro%}
+
+{% macro render_colorInput(num) %}
+<div class="controls">
+    <label for="txtBanda{{num}}" class="control-label"><h4>{{num}}° banda</h4></label>
+    <select id="txtBanda{{num}}" name="txtBanda{{num}}">
+        <option value="0">Negro</option>
+        <option value="1">Café</option>
+        <option value="2">Rojo</option>
+        <option value="3">Naranja</option>
+        <option value="4">Amarillo</option>
+        <option value="5">Verde</option>
+        <option value="6">Azul</option>
+        <option value="7">Violeta</option>
+        <option value="8">Gris</option>
+        <option value="9">Blanco</option>
+    </select>
+</div>
+{%endmacro%}
+
+{% macro render_tdColor(n) %}
+{% if n == "Negro" %}
+    <td style="background-color: #000000; color: white;">{{n}}</td>
+{% elif n == "Café" %}
+    <td style="background-color:#964B00; color: white;">{{n}}</td>
+{% elif n == "Rojo" %}
+    <td style="background-color:#FF0000; color: white;">{{n}}</td>
+{% elif n == "Naranja" %}
+    <td style="background-color:#FFA500;">{{n}}</td>
+{% elif n == "Amarillo" %}
+    <td style="background-color:#FFFF00;">{{n}}</td>
+{% elif n == "Verde" %}
+    <td style="background-color:#008000; color: white;">{{n}}</td>
+{% elif n == "Azul" %}
+    <td style="background-color:#0000FF; color: white;">{{n}}</td>
+{% elif n == "Violeta" %}
+    <td style="background-color:#800080; color: white;">{{n}}</td>
+{% elif n == "Gris" %}
+    <td style="background-color:#808080; color: white;">{{n}}</td>
+{% elif n == "Blanco" %}
+    <td style="background-color:#FFFFFF;">{{n}}</td>
+{% elif n == "Oro" %}
+    <td style="background-color:#FFD700;">{{n}}</td>
+{% elif n == "Plata" %}
+    <td style="background-color:#C0C0C0;">{{n}}</td>
+{% endif %}
+{%endmacro%}

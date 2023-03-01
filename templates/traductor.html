@@ -3,7 +3,7 @@
 {% block content %}
     
 <h2 class="text-center">TRADUCTOR</h2>
-    <form action="" method="POST" name="registro" novalidate>
+    <form action="/traductor" method="POST" name="registro" novalidate>
     {%from "_macros.html" import render_field%}
         <div class="control-group text-center">
             {{form.csrf_token}}
@@ -13,39 +13,43 @@
         </div>
         <div class="control-group text-center">
             <div class="controls">
-                <input type="submit" value="Registrar" name="btnRegistrar">
+                <input type="submit" value="Registrar" name="btnRegistrar" class="btn btn-primary">
             </div>
         </div>
     </form>
     <hr/>
-    <form action="" method="POST" name="traduction" novalidate>
-        {{form.csrf_token}}
-        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        <div class="row">
-            <div class="col-4">
-                <div class="control-group">
-                    <label for="" class="control-label"><h4>Idioma:</h4></label>
-                    <div class="controls">
-                        <input type="radio" value="1" name="opcIdioma"/>Español
-                        <br/>
-                        <input type="radio" value="0" name="opdIdioma" checked/>Ingles
+    <div class="container text-center">
+        <form action="/resTraductor" method="POST" name="traduction" novalidate>
+            {{form.csrf_token}}
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="control-group">
+                        <label for="" class="control-label"><h4>Idioma de origen:</h4></label>
+                        <div class="controls">
+                            <input type="radio" value="1" name="opcIdioma" checked/>Español
+                            <br/>
+                            <input type="radio" value="2" name="opcIdioma"/>Ingles
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="control-group">
-                    <label for="" class="control-label"><h4>Palabra:</h4></label>
-                    <div class="controls">
-                        <input type="text" name="txtPalabra" class="form-control" placeholder="Palabra a traducir">
-                        <input type="submit" value="Buscar" name="btnBuscar">
+                <div class="col">
+                    <div class="control-group">
+                        <label for="" class="control-label"><h4>Palabra:</h4></label>
+                        <div class="controls">
+                            <input type="text" name="txtPalabra" class="form-control" placeholder="Palabra a traducir">
+                            <input type="submit" value="Buscar" name="btnBuscar" class="btn btn-primary">
+                        </div>
                     </div>
                 </div>
+                {% if res != '' %}
+                <div class="col">
+                    <h4>Resultado:</h4>
+                    <h4>{{res}}</h4>
+                </div>
+                {% endif %}
             </div>
-            <div class="col-4">
-                <h4>Resultado:</h4>
-                <h4>AAA</h4>
-            </div>
-        </div>
         </form>
+    </div>
 
 {% endblock %}

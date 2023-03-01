@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    
+<div class="container">
+    <div class="row text-center align-items-center">
+        <div class="col-12">
+            <h1>Calculadora de resistencias</h1>
+            <img src="../static/img/resists.jpg" alt="Tabla de resistencias" >
+        </div>
+        <div class="col-12">
+            <form action="" method="POST">
+                {%from "_macros.html" import render_colorInput%}
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                {{render_colorInput(1)}}
+                {{render_colorInput(2)}}
+                {{render_colorInput(3)}}
+                <div class="controls">
+                    <label for="txtBanda4" class="control-label"><h4>Tolerancia</h4></label>
+                    <input type="radio" value="10" name="opcTolerancia" checked/>Oro = 5%<br/>
+                    <br/>
+                    <input type="radio" value="11" name="opcTolerancia"/>Plata = 10%<br/>
+                </div>
+                <br/>
+                <input type="submit" value="Calcular valor" name="btnCalcular" class="btn btn-primary">
+            </form>
+        </div>
+        {% if result != '' %}
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                  <tr style="background-color: black; color: white;">
+                    <th>Banda 1</th>
+                    <th>Banda 2</th>
+                    <th>Banda 3</th>
+                    <th>Banda 4</th>
+                    <th>Valor</th>
+                    <th>Mínimo</th>
+                    <th>Máximo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {%from "_macros.html" import render_tdColor%}
+                    {{render_tdColor(colors["n1"])}}
+                    {{render_tdColor(colors["n2"])}}
+                    {{render_tdColor(colors["n3"])}}
+                    {{render_tdColor(colors["n4"])}}
+                    <td>{{result}}Ω</td>
+                    <td>{{min}}Ω</td>
+                    <td>{{max}}Ω</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
