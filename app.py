@@ -83,6 +83,8 @@ def traductor():
         f.write('\n'+esp.upper()+'-'+ing.upper())
         f.close()
 
+        succes_message = 'Traduccion agregada correctamente'
+        flash(succes_message)
     return render_template('traductor.html', form=reg_traduct, res = '')
 
 @app.route("/resTraductor", methods=['POST'])
